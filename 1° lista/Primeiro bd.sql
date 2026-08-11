@@ -33,3 +33,32 @@ PRIMARY KEY(cod_livro, cod_autor),
 FOREIGN KEY (cod_livro) REFERENCES livro(cod_livro) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (cod_autor) REFERENCES autor(cod_autor) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+ALTER TABLE editora
+RENAME COLUMN nome TO descricao;
+
+ALTER TABLE autor 
+MODIFY sexo VARCHAR(1) NOT NULL;
+
+ALTER TABLE livro 
+ADD CONSTRAINT uk_livro_isbn UNIQUE (isbn);
+
+ALTER TABLE livro 
+ALTER COLUMN preco SET DEFAULT 10.00;
+
+ALTER TABLE livro 
+DROP COLUMN num_edicao;
+ 
+CREATE TABLE grupo (
+id_grupo INT PRIMARY KEY NOT NULL,
+nome VARCHAR (50) NOT NULL
+);
+ALTER TABLE editora
+ADD COLUMN id_grupo INT;
+
+ALTER TABLE editora
+ADD CONSTRAINT fk_editora_grupo
+FOREIGN KEY (id_grupo)
+REFERENCES grupo(id_grupo)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
