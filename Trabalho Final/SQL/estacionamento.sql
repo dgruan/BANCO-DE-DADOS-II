@@ -86,3 +86,10 @@ INSERT INTO saidas (data_saida, hora_saida, valor, id_entrada) VALUES
 ('2026-11-20', '17:30:00', 25.00, 2),
 ('2026-11-21', '10:00:00', 12.00, 3),
 ('2026-11-21', '18:00:00', 30.00, 4);
+
+CREATE USER 'user1'@'localhost'
+IDENTIFIED BY '1234';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON estacionamento.*
+TO 'user1'@'localhost';
+
